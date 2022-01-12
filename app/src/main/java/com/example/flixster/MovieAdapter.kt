@@ -1,6 +1,7 @@
 package com.example.flixster
 
 import android.content.Context
+import android.content.res.Configuration
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -34,9 +35,17 @@ class MovieAdapter(private val context: Context, private val movies: List<Movie>
         private val tvOverview = itemView.findViewById<TextView>(R.id.tvOverview)
 
         fun bind(movie: Movie) {
+            lateinit var image: String
+            val orientation = context.resources.configuration.orientation
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                image = movie.posterImageUrl
+                // ...
+            } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                image = movie.backdropImageUrl
+            }
             tvTitle.text = movie.title
             tvOverview.text = movie.overview
-            Glide.with(context).load(movie.posterImageUrl).into(ivPoster)
+            Glide.with(context).load(image).into(ivPoster)
         }
     }
 }
