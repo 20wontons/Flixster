@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#4A4A4A">
 
     <ImageView
         android:id="@+id/infoPoster"
@@ -18,6 +19,8 @@
         android:id="@+id/infoPlayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:scaleX="2"
+        android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="@+id/infoPoster"
         app:layout_constraintEnd_toEndOf="@+id/infoPoster"
         app:layout_constraintStart_toStartOf="@+id/infoPoster"
@@ -32,6 +35,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/sample_title"
+        android:textStyle="bold"
+        android:textColor="#FFF"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/infoPoster"
@@ -42,9 +47,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:text="@string/sample_date"
+        android:textColor="#FFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/infoPoster"
         app:layout_constraintTop_toBottomOf="@+id/infoTitle" />
@@ -54,10 +60,10 @@
         android:layout_width="237dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
+        android:isIndicator="true"
         android:progressTint="#FFEB3B"
         android:rating="4.2"
-        android:isIndicator="true"
         app:layout_constraintStart_toEndOf="@+id/infoPoster"
         app:layout_constraintTop_toBottomOf="@+id/infoReleaseDate" />
 
@@ -66,10 +72,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/sample_overview"
+        android:textColor="#FFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/infoPoster"

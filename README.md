@@ -21,13 +21,20 @@ Flixster is an app that allows users to browse movies from the [The Movie Databa
 - [ ] (2pts) Improved the user interface by experimenting with styling and coloring.
 - [ ] (2pts) For popular movies (i.e. a movie voted for more than 5 stars), the full backdrop image is displayed. Otherwise, a poster image, the movie title, and overview is listed. Use Heterogenous RecyclerViews and use different ViewHolder layout files for popular movies and less popular ones.
 
-### App Walkthough GIF
-`TODO://` Add the URL to your animated app walkthough `gif` in the image tag below, `YOUR_GIF_URL_HERE`. Make sure the gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after after adding gif)
+### App Walkthrough GIF
+`TODO://` Add the URL to your animated app walkthrough `gif` in the image tag below, `YOUR_GIF_URL_HERE`. Make sure the gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after after adding gif)
 
 <img src="YOUR_GIF_URL_HERE" width=250><br>
 
 ### Notes
-Describe any challenges encountered while building the app.
+
+#### Added Features
+- Clicking on a Movie tile in the MainActivity will bring up an activity for more information about the movie, including the release date, rating, and full overview.
+- Clicking on the play button in the center of the backdrop or poster image in the InfoActivity will open the trailer through a YouTube embed within the app.
+- The trailer will launch and load in the landscape mode.
+
+#### Challenges
+- I couldn't figure out how to add a placeholder without it changing the size of the ImageView. I think some more reading on placeholders and ImageView may help in the future.
 
 ### Open-source libraries used
 
