@@ -12,8 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 private const val TAG = "MovieAdapter"
-class MovieAdapter(private val context: Context, private val movies: List<Movie>)
+class MovieAdapter(private val context: Context,
+                   private val movies: List<Movie>,
+                   val clickListener: OnClickListener)
     : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+
+    interface OnClickListener {
+        fun onItemClicked(position: Int)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         Log.i(TAG, "onCreateViewHolder")
@@ -30,6 +36,13 @@ class MovieAdapter(private val context: Context, private val movies: List<Movie>
     override fun getItemCount() = movies.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        init {
+            itemView.setOnClickListener {
+                clickListener.onItemClicked(adapterPosition)
+                true
+            }
+        }
+
         private val ivPoster = itemView.findViewById<ImageView>(R.id.ivPoster)
         private val tvTitle = itemView.findViewById<TextView>(R.id.tvTitle)
         private val tvOverview = itemView.findViewById<TextView>(R.id.tvOverview)
@@ -39,7 +52,6 @@ class MovieAdapter(private val context: Context, private val movies: List<Movie>
             val orientation = context.resources.configuration.orientation
             if (orientation == Configuration.ORIENTATION_PORTRAIT) {
                 image = movie.posterImageUrl
-                // ...
             } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 image = movie.backdropImageUrl
             }

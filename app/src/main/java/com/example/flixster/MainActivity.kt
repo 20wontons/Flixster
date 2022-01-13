@@ -1,5 +1,7 @@
 package com.example.flixster
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,7 +23,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         rvMovies = findViewById<RecyclerView>(R.id.rvMovies)
 
-        val movieAdapter = MovieAdapter(this, movies)
+        val onClickListener = object : MovieAdapter.OnClickListener {
+            override fun onItemClicked(position: Int) {
+                Log.i(TAG,"Item Clicked: $position")
+                try {
+                    val i = Intent(this@MainActivity, InfoActivity::class.java)
+                    i.putExtra("backdrop", movies[position].backdropImageUrl)
+                    i.putExtra("title", movies[position].title)
+                    i.putExtra("releaseDate", movies[position].releaseDate)
+                    i.putExtra("rating", movies[position].rating)
+                    i.putExtra("overview", movies[position].overview)
+                    i.putExtra("position", position)
+                    i.putExtra("code", 400)
+                    startActivity(i)
+                } catch (noActivity: ActivityNotFoundException) {
+                    noActivity.printStackTrace()
+                }
+            }
+        }
+
+        val movieAdapter = MovieAdapter(this, movies, onClickListener)
         rvMovies.adapter = movieAdapter
         rvMovies.layoutManager = LinearLayoutManager(this)
 

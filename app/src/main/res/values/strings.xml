@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Flixster</string>
+    <string name="sample_title">Spider-Man: No Way Home</string>
+    <string name="sample_overview">Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.</string>
+    <string name="sample_date">Release Date: 2021-12-15</string>
 </resources>
