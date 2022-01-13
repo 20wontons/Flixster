@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
                 try {
                     val i = Intent(this@MainActivity, InfoActivity::class.java)
                     i.putExtra("backdrop", movies[position].backdropImageUrl)
+                    i.putExtra("poster", movies[position].posterImageUrl)
                     i.putExtra("title", movies[position].title)
                     i.putExtra("releaseDate", movies[position].releaseDate)
                     i.putExtra("rating", movies[position].rating)
