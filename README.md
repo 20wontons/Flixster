@@ -28,6 +28,10 @@ Flixster is an app that allows users to browse movies from the [The Movie Databa
 
 ### Notes
 
+#### Extra Ideas
+- [ ] Change color of Action Bar
+- [ ] Make background a translucent movie poster (for portrait) or backdrop (for landscape)
+
 Describe any challenges encountered while building the app.
 
 ## Open-source libraries used
@@ -54,7 +58,7 @@ Describe any challenges encountered while building the app.
 
 ### App Walkthrough GIF
 
-<img src="https://github.com/20wontons/Flixster/blob/main/walkthrough.gif" width=500><br>
+<img src="https://github.com/20wontons/Flixster/blob/main/walkthrough.gif" width=250><br>
 
 ### Notes
 
