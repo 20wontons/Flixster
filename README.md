@@ -54,7 +54,7 @@ Describe any challenges encountered while building the app.
 
 ### App Walkthrough GIF
 
-<img src="https://github.com/20wontons/Flixster/blob/main/walkthrough.gif" width=250><br>
+<img src="https://github.com/20wontons/Flixster/blob/main/walkthrough.gif" width=500><br>
 
 ### Notes
 
