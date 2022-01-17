@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4A4A4A">
+    android:orientation="horizontal"
+    android:background="@color/BG_INFO"
+    tools:context=".InfoActivity">
 
-    <ImageView
-        android:id="@+id/infoPoster"
+<!--    <ImageView-->
+<!--        android:id="@+id/infoPoster"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        tools:srcCompat="@tools:sample/avatars" />-->
+
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/infoPlayer"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/infoPlayButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleX="2"
-        android:scaleY="2"
-        app:layout_constraintBottom_toBottomOf="@+id/infoPoster"
-        app:layout_constraintEnd_toEndOf="@+id/infoPoster"
-        app:layout_constraintStart_toStartOf="@+id/infoPoster"
-        app:layout_constraintTop_toTopOf="@+id/infoPoster"
-        app:srcCompat="@android:drawable/ic_media_play" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/infoTitle"
@@ -39,7 +38,7 @@
         android:textColor="#FFF"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/infoPoster"
+        app:layout_constraintStart_toEndOf="@+id/infoPlayer"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -52,19 +51,21 @@
         android:text="@string/sample_date"
         android:textColor="#FFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/infoPoster"
+        app:layout_constraintStart_toEndOf="@+id/infoPlayer"
         app:layout_constraintTop_toBottomOf="@+id/infoTitle" />
 
     <RatingBar
         android:id="@+id/infoRatingBar"
-        android:layout_width="237dp"
-        android:layout_height="44dp"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:isIndicator="true"
+        android:layout_marginTop="8dp"
         android:progressTint="#FFEB3B"
-        android:rating="4.2"
-        app:layout_constraintStart_toEndOf="@+id/infoPoster"
+        android:rating="8.4"
+        android:numStars="10"
+        android:stepSize="0.5"
+        app:layout_constraintStart_toEndOf="@+id/infoPlayer"
         app:layout_constraintTop_toBottomOf="@+id/infoReleaseDate" />
 
     <TextView
@@ -79,7 +80,7 @@
         android:textColor="#FFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/infoPoster"
+        app:layout_constraintStart_toEndOf="@+id/infoPlayer"
         app:layout_constraintTop_toBottomOf="@+id/infoRatingBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

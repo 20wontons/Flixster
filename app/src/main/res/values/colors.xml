@@ -7,4 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="BG_MAIN">#181819</color>
+    <color name="BG_INFO">#4A4A4A</color>
 </resources>
