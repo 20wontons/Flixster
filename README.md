@@ -22,9 +22,7 @@ Flixster is an app that allows users to browse movies from the [The Movie Databa
 
 ### App Walkthrough GIF
 
-`TODO://` Add the URL to your animated app walkthrough `gif` in the image tag below, `YOUR_GIF_URL_HERE`. Make sure the gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after after adding gif)
-
-<img src="YOUR_GIF_URL_HERE" width=250><br>
+<img src="https://github.com/20wontons/Flixster/blob/main/walkthrough_pt2.gif" width=250><br>
 
 ### Notes
 
@@ -36,6 +34,8 @@ Flixster is an app that allows users to browse movies from the [The Movie Databa
 - Redefined a "popular movie" to be a movie rated more than 7 stars, rather than 5.
 
 Describe any challenges encountered while building the app.
+- The shared poster element took some time to load. I saw a section on postponing the transition for the load.
+- At times I found it daunting to translate Java to Kotlin, but after messing with the code a bit it seemed to worked.
 
 ## Open-source libraries used
 - [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
