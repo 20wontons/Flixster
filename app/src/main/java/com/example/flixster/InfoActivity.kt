@@ -3,8 +3,10 @@ package com.example.flixster
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
@@ -12,6 +14,7 @@ import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerView
+import jp.wasabeef.glide.transformations.BlurTransformation
 import okhttp3.Headers
 
 private const val YOUTUBE_API_KEY = "AIzaSyAgY_UzUg1pmE-lj6BdJQT-3afbUbOLx9o"
@@ -20,7 +23,7 @@ private const val TAG = "InfoActivity"
 
 class InfoActivity : YouTubeBaseActivity() {
 
-//    private lateinit var infoPoster: ImageView
+    private lateinit var infoBackground: ImageView
     private lateinit var infoPlayer: YouTubePlayerView
     private lateinit var infoTitle: TextView
     private lateinit var infoReleaseDate: TextView
@@ -31,24 +34,24 @@ class InfoActivity : YouTubeBaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info)
 
-//        infoPoster = findViewById<ImageView>(R.id.infoPoster)
+        infoBackground = findViewById<ImageView>(R.id.infoBackground)
         infoPlayer = findViewById<YouTubePlayerView>(R.id.infoPlayer)
         infoTitle = findViewById<TextView>(R.id.infoTitle)
-        infoReleaseDate= findViewById<TextView>(R.id.infoReleaseDate)
+        infoReleaseDate = findViewById<TextView>(R.id.infoReleaseDate)
         infoRatingBar = findViewById<RatingBar>(R.id.infoRatingBar)
         infoOverview = findViewById<TextView>(R.id.infoOverview)
 
         val movie = intent.getParcelableExtra<Movie>(MOVIE_EXTRA) as Movie
         Log.i(TAG, "Movie is $movie")
 
-//        var image: String? = ""
-//        val orientation = resources.configuration.orientation
-//        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-//            image = movie.backdropImageUrl
-//        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            image = movie.posterImageUrl
-//        }
-//        Glide.with(this).load(image).into(infoPoster)
+        var image: String? = ""
+        val orientation = resources.configuration.orientation
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            image = movie.posterImageUrl
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            image = movie.backdropImageUrl
+        }
+        Glide.with(this).load(image).transform(BlurTransformation()).into(infoBackground)
 //        findViewById<ImageView>(R.id.infoPlayButton).setOnClickListener {
 //            Log.i(TAG, "User clicked on play button")
 //            try {
@@ -88,7 +91,7 @@ class InfoActivity : YouTubeBaseActivity() {
                     if (movieTrailerJson.getString("name").contains("Official Trailer")) {
                         Log.i(TAG, "Movie official trailer found!")
                         val youtubeKey = movieTrailerJson.getString("source")
-                        initializeYoutube(youtubeKey)
+                        initializeYoutube(youtubeKey, movie.rating)
                         return
                     }
                 }
@@ -97,14 +100,14 @@ class InfoActivity : YouTubeBaseActivity() {
                     if (movieTrailerJson.getString("name").contains("Trailer")) {
                         Log.i(TAG, "Movie trailer found!")
                         val youtubeKey = movieTrailerJson.getString("source")
-                        initializeYoutube(youtubeKey)
+                        initializeYoutube(youtubeKey, movie.rating)
                         return
                     }
                 }
                 Log.w(TAG, "No movie official trailers found")
                 val movieTrailerJson = results.getJSONObject(0)
                 val youtubeKey = movieTrailerJson.getString("source")
-                initializeYoutube(youtubeKey)
+                initializeYoutube(youtubeKey, movie.rating)
             }
 
         })
@@ -112,7 +115,17 @@ class InfoActivity : YouTubeBaseActivity() {
 
     }
 
-    private fun initializeYoutube(youtubeKey: String) {
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            android.R.id.home -> {
+//                supportFinishAfterTransition()
+//                return true
+//            }
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
+
+    private fun initializeYoutube(youtubeKey: String, rating: Double) {
         infoPlayer.initialize(YOUTUBE_API_KEY, object: YouTubePlayer.OnInitializedListener {
             override fun onInitializationSuccess(
                 provider: YouTubePlayer.Provider?,
@@ -120,7 +133,11 @@ class InfoActivity : YouTubeBaseActivity() {
                 p2: Boolean
             ) {
                 Log.i(TAG, "onInitializationSuccess")
-                player?.cueVideo(youtubeKey)
+                if (rating > 7.0) {
+                    player?.loadVideo(youtubeKey)
+                } else {
+                    player?.cueVideo(youtubeKey)
+                }
             }
 
             override fun onInitializationFailure(
